@@ -1,4 +1,4 @@
-name: PR Preview
+name: Deploy to prod
 
 on:
   push:
