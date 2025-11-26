@@ -50,16 +50,9 @@ jobs:
           expires: 30d
           projectId: dora-dev-sandbox
           channelId: ${{ github.ref }}
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: test/playwright
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Set up playwright
+        working-directory: test/playwright
         run: npm ci && npx playwright install --with-deps
       - name: Playwright tests
+        working-directory: test/playwright
         run: PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test
