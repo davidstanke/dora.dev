@@ -53,8 +53,11 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./test/playwright
     steps:
       - name: Set up playwright
         run: npm ci && npx playwright install --with-deps
       - name: Playwright tests
-        run: PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test test/playwright
+        run: PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test
