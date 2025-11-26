@@ -34,7 +34,7 @@ jobs:
         run: |
           ./svelte/quick-check/build-quick-check.sh && \
           ./svelte/core-v2/build-core.sh && \
-          ./svelte/experimental-ai-model/build-core.sh
+          ./svelte/experimental-ai-model/build-ai-model.sh
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
