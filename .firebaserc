@@ -1,22 +1,5 @@
 {
   "projects": {
-    "default": "doradotdev"
-  },
-  "targets": {
-    "doradotdev": {
-      "hosting": {
-        "prod": [
-          "doradotdev"
-        ]
-      }
-    },
-    "doradotdev-staging": {
-      "hosting": {
-        "prod": [
-          "dora.dev"
-        ]
-      }
-    }
-  },
-  "etags": {}
+    "default": "dora-dev-sandbox"
+  }
 }

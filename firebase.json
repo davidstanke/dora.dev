@@ -1,7 +1,6 @@
 {
   "hosting": [
     {
-      "target": "prod",
       "public": "hugo/public",
       "ignore": [
         "firebase.json",

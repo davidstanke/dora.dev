@@ -1,12 +1,13 @@
 name: PR Preview
 
 on:
-  # Runs on pushes targeting the default branch
-  pull_request:
-    types: [opened]
+  # - pull_request
+  - workflow_dispatch
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
 
 # Default to bash
 defaults:
@@ -14,7 +15,6 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     env:
@@ -41,6 +41,9 @@ jobs:
           HUGO_ENVIRONMENT: production
         run: |
           hugo --source=./hugo --logLevel=debug
-          
-  # Deployment job
-  # TODO
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DORA_DEV_SANDBOX }}
+          projectId: dora-dev-sandbox
