@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./test/playwright
+        working-directory: test/playwright
     steps:
       - name: Set up playwright
         run: npm ci && npx playwright install --with-deps
