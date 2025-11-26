@@ -48,3 +48,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DORA_DEV_SANDBOX }}
           expires: 30d
           projectId: dora-dev-sandbox
+          channelId: 'pr-${{ github.event.number }}-${{ github.event.pull_request.head.ref }}'
