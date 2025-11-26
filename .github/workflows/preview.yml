@@ -57,6 +57,8 @@ jobs:
       run:
         working-directory: test/playwright
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set up playwright
         run: npm ci && npx playwright install --with-deps
       - name: Playwright tests
