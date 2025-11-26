@@ -50,11 +50,11 @@ jobs:
           expires: 30d
           projectId: dora-dev-sandbox
           channelId: ${{ github.ref }}
-      - name: echo URL
-        run: echo ${{ steps.deploy.outputs.details_url }}
-      # - name: Set up playwright
-      #   working-directory: test/playwright
-      #   run: npm ci && npx playwright install --with-deps
-      # - name: Playwright tests
-      #   working-directory: test/playwright
-      #   run: PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test
+      - name: Set up playwright
+        working-directory: test/playwright
+        run: npm ci && npx playwright install --with-deps
+      - name: Playwright tests
+        working-directory: test/playwright
+        run: |
+          set -u
+          PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test
