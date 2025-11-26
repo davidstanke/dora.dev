@@ -1,4 +1,4 @@
-name: PR Preview
+name: Deploy to prod
 
 on:
   - pull_request
@@ -42,6 +42,7 @@ jobs:
         run: |
           hugo --source=./hugo --logLevel=debug
       - name: Deploy to Firebase
+        id: deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
@@ -49,3 +50,11 @@ jobs:
           expires: 30d
           projectId: dora-dev-sandbox
           channelId: ${{ github.ref }}
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up playwright
+        run: npm ci && npx playwright install --with-deps
+      - name: Playwright tests
+        run: PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test test/playwright
