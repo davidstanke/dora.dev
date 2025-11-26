@@ -57,4 +57,4 @@ jobs:
         working-directory: test/playwright
         run: |
           set -u
-          PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test
+          PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test --max-failures 1
