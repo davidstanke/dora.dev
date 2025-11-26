@@ -40,7 +40,7 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
-          hugo --source=./hugo --logLevel=debug
+          hugo --source=./hugo --logLevel=debug --buildDrafts
       - name: Deploy to Firebase
         id: deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
