@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.147.9
+    outputs:
+      preview_url: ${{ steps.deploy.outputs.details_url }}
     steps:
       - name: Install Hugo CLI
         run: |
@@ -50,11 +52,40 @@ jobs:
           expires: 30d
           projectId: dora-dev-sandbox
           channelId: ${{ github.ref }}
+  # shard tests across multiple workers
+  test1:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - name: Set up playwright
         working-directory: test/playwright
         run: npm ci && npx playwright install --with-deps
       - name: Playwright tests
         working-directory: test/playwright
+        env:
+          PLAYWRIGHT_BASE_URL: ${{needs.job1.outputs.output1}}
         run: |
           set -u
-          PLAYWRIGHT_BASE_URL=${{ steps.deploy.outputs.details_url }} npx playwright test --max-failures 1
+          npx playwright test --max-failures 1 --shard=1/2
+  test2:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up playwright
+        working-directory: test/playwright
+        run: npm ci && npx playwright install --with-deps
+      - name: Playwright tests
+        working-directory: test/playwright
+        env:
+          PLAYWRIGHT_BASE_URL: ${{needs.job1.outputs.output1}}
+        run: |
+          set -u
+          npx playwright test --max-failures 1 --shard=2/2
