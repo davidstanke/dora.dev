@@ -67,7 +67,7 @@ jobs:
       - name: Playwright tests
         working-directory: test/playwright
         env:
-          PLAYWRIGHT_BASE_URL: ${{needs.job1.outputs.output1}}
+          PLAYWRIGHT_BASE_URL: ${{needs.build.outputs.preview_url}}
         run: |
           set -u
           npx playwright test --max-failures 1 --shard=1/2
@@ -85,7 +85,7 @@ jobs:
       - name: Playwright tests
         working-directory: test/playwright
         env:
-          PLAYWRIGHT_BASE_URL: ${{needs.job1.outputs.output1}}
+          PLAYWRIGHT_BASE_URL: ${{needs.build.outputs.preview_url}}
         run: |
           set -u
           npx playwright test --max-failures 1 --shard=2/2
