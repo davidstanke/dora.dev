@@ -34,9 +34,11 @@ jobs:
           submodules: recursive
       - name: Build Svelte components
         run: |
-          ./svelte/quick-check/build-quick-check.sh && \
-          ./svelte/core-v2/build-core.sh && \
-          ./svelte/experimental-ai-model/build-ai-model.sh
+          # build all svelte components (in parallel)
+          ./svelte/quick-check/build-quick-check.sh & \
+          ./svelte/core-v2/build-core.sh & \
+          ./svelte/experimental-ai-model/build-ai-model.sh & \
+          wait
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
@@ -56,7 +58,7 @@ jobs:
   test:
     strategy:
       matrix:
-        shard: [1, 2]
+        shard: [1, 2, 3, 4]
     runs-on: ubuntu-latest
     needs: build_drafts_on
     steps:
