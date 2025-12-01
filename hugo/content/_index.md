@@ -14,7 +14,7 @@ bannerSubtitle: "DORA is the largest and longest running research program of its
   >}}
 
 {{< homepage/lede
-  headline="Get better at getting better"
+  headline="Get much better at getting better"
   >}}
   DORA is the largest and longest running research program of its kind, that seeks to understand the capabilities that drive software delivery and operations performance. DORA helps teams apply those capabilities, leading to better organizational performance.
   {{< /homepage/lede >}}
