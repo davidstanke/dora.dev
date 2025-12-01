@@ -1,4 +1,4 @@
-name: PR Preview
+name: PR Preview (Drafts OFF)
 
 on:
   - pull_request
