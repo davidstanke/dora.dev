@@ -1,9 +1,11 @@
 name: Deploy to prod
 
 on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 defaults:
