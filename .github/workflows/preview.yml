@@ -57,7 +57,7 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           expires: 30d
-          projectId: dora-dev-sandbox
+          projectId: ${{ vars.GOOGLE_CLOUD_PROJECT }}
           channelId: ${{ github.ref }}_drafts_off
   build_drafts_on:
     runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DORA_DEV_SANDBOX }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           expires: 30d
           projectId: ${{ vars.GOOGLE_CLOUD_PROJECT }}
           channelId: ${{ github.ref }}_drafts_on
