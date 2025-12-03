@@ -91,7 +91,7 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DORA_DEV_SANDBOX }}
           expires: 30d
-          projectId: dora-dev-sandbox
+          projectId: ${{ variables.GOOGLE_CLOUD_PROJECT }}
           channelId: ${{ github.ref }}_drafts_on
   # shard tests across multiple workers
   test:
