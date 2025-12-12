@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "doradotdev"
+    "default": "dora-dev-sandbox"
   },
   "targets": {
     "doradotdev": {
