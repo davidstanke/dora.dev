@@ -2,5 +2,14 @@
   "projects": {
     "default": "dora-dev-sandbox"
   },
+  "targets": {
+    "dora-dev-sandbox": {
+      "hosting": {
+        "prod": [
+          "dora-dev-sandbox"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
